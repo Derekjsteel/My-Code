@@ -1,0 +1,17 @@
+#!/bin/bash
+#Written by Derek Steel
+#Tue Jun 16 17:27:43 MDT 2020
+#readlines.py written by Derek Steel
+#CRY100_05_Lab_master.key, CRY100_05_Lab_taggen.py, and CRY100_05_Lab_tags.txt
+# 	used with permission from Rhett Saunders, as part of Cryptology 100.
+
+python3 readlines.py
+
+while read -r line;
+	do
+		python3 CRY100_05_Lab_taggen.py "$line" CRY100_05_Lab_master;
+	done < pt.txt > /dev/null
+
+python3 readlines.py
+
+diff -y hashes.txt posthash.txt | cat -n
